@@ -1,15 +1,18 @@
 import { app, BrowserWindow } from "electron";
-import { icpMainHandle, isDev } from "./utils.js";
+import { icpMainHandle, isDev } from "../utils/utils.js";
 import { getStaticData, pollRequest } from "./resourceManager.js";
-import { getPreloadPath, getUIPath } from "./pathResolver.js";
 import { createTray } from "./tray.js";
 import { createMenu } from "./menu.js";
+import { getPreloadPath, getUIPath } from "../utils/pathResolver.js";
 
 app.on("ready", () => {
   const mainWindow = new BrowserWindow({
     webPreferences: {
       preload: getPreloadPath(),
     },
+    frame: false,
+    width: 800,
+    height: 600,
   });
 
   if (isDev()) {

@@ -2,7 +2,7 @@ import osUtils from "os-utils";
 import fs from "fs";
 import os from "os";
 import { BrowserWindow } from "electron";
-import { icpWebContentsSend, isWindows } from "./utils.js";
+import { icpWebContentsSend, isWindows } from "../utils/utils.js";
 
 const POLLING_INTERVAL = 500;
 

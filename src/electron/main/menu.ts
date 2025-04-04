@@ -1,5 +1,5 @@
 import { Menu, app, BrowserWindow } from "electron";
-import { icpWebContentsSend, isDev, isMac } from "./utils.js";
+import { icpWebContentsSend, isDev, isMac } from "../utils/utils.js";
 
 export function createMenu(mainWindow: BrowserWindow) {
   Menu.setApplicationMenu(

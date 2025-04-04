@@ -1,7 +1,7 @@
 import { app, BrowserWindow, Menu, Tray } from "electron";
 import path from "path";
-import { getAssetsPath } from "./pathResolver.js";
-import { isMac } from "./utils.js";
+import { isMac } from "../utils/utils.js";
+import { getAssetsPath } from "../utils/pathResolver.js";
 
 export const createTray = (mainWindow: BrowserWindow) => {
   const tray = new Tray(

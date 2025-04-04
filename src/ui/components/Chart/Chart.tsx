@@ -1,5 +1,5 @@
 import { FC, useMemo } from "react";
-import BaseChart from "./BaseChart";
+import BaseChart from "../common/BaseChart/BaseChart";
 
 type ChartProps = {
   data: number[];
