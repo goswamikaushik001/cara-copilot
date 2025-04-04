@@ -3,6 +3,9 @@ import { pathToFileURL } from "url";
 import { getUIPath } from "./pathResolver.js";
 
 export const isDev = (): boolean => process.env.NODE_ENV === "development";
+export const isMac = (): boolean => process.platform === "darwin";
+export const isWindows = (): boolean => process.platform === "win32";
+export const isLinux = (): boolean => process.platform === "linux";
 
 export const icpMainHandle = <Key extends keyof EventPayloadMapping>(
   key: Key,
@@ -23,7 +26,6 @@ export const icpWebContentsSend = <Key extends keyof EventPayloadMapping>(
 };
 
 export const validateEventFrame = (frame: WebFrameMain) => {
-  console.log("frame", frame.url);
   if (isDev() && new URL(frame.url).host === "localhost:5123") {
     return;
   }

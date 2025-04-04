@@ -2,9 +2,9 @@ import osUtils from "os-utils";
 import fs from "fs";
 import os from "os";
 import { BrowserWindow } from "electron";
-import { icpWebContentsSend } from "./utils.js";
+import { icpWebContentsSend, isWindows } from "./utils.js";
 
-const POLLING_INTERVAL = 10000;
+const POLLING_INTERVAL = 500;
 
 export const pollRequest = (mainWindow: BrowserWindow) => {
   setInterval(async () => {
@@ -17,9 +17,6 @@ export const pollRequest = (mainWindow: BrowserWindow) => {
       ramUsage,
       storageUsage,
     });
-
-    // For testing purposes
-    console.log({ cpuUsage, ramUsage, storageUsage });
   }, POLLING_INTERVAL);
 };
 
@@ -31,7 +28,7 @@ const getCpuUsage = (): Promise<number> =>
 const getRamUsage = () => 1 - osUtils.freememPercentage();
 
 const getStorageData = () => {
-  const stats = fs.statfsSync(process.platform === "win32" ? "C://" : "/");
+  const stats = fs.statfsSync(isWindows() ? "C://" : "/");
   const total = stats.bsize * stats.blocks;
   const free = stats.bsize * stats.bfree;
 
