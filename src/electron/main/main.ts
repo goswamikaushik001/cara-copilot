@@ -1,5 +1,5 @@
 import { app, BrowserWindow } from "electron";
-import { icpMainHandle, isDev } from "../utils/utils.js";
+import { icpMainHandle, icpMainOn, isDev } from "../utils/utils.js";
 import { getStaticData, pollRequest } from "./resourceManager.js";
 import { createTray } from "./tray.js";
 import { createMenu } from "./menu.js";
@@ -24,6 +24,20 @@ app.on("ready", () => {
   pollRequest(mainWindow);
 
   icpMainHandle("getStaticData", () => getStaticData());
+
+  icpMainOn("sendFrameAction", (payload) => {
+    switch (payload) {
+      case "CLOSE":
+        mainWindow.close();
+        break;
+      case "MINIMIZE":
+        mainWindow.minimize();
+        break;
+      case "MAXIMIZE":
+        mainWindow.maximize();
+        break;
+    }
+  });
 
   createTray(mainWindow);
   handleCloseEvent(mainWindow);
