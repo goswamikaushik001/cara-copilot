@@ -5,7 +5,7 @@ type Statistics = {
 };
 
 type StaticData = {
-  cpuModal: string;
+  cpuModel: string;
   totalStorage: number;
   totalMemoryGB: number;
 };

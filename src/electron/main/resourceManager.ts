@@ -40,11 +40,11 @@ const getStorageData = () => {
 
 export const getStaticData = () => {
   const { totalStorage } = getStorageData();
-  const cpuModal = os.cpus()[0].model;
+  const cpuModel = os.cpus()[0].model;
   const totalMemoryGB = Math.floor(os.totalmem() / 1_000_000_000);
 
   return {
-    cpuModal,
+    cpuModel,
     totalStorage,
     totalMemoryGB,
   };
